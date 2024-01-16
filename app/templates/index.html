@@ -23,8 +23,8 @@
     <ul>
         {% for file in files %}
             <li>
+                <i class="{{ file['icon'] }}"></i>
                 {{ file['name'] }}
-		<i class="{{ file['icon'] }}"></i>
                 <a href="{{ url_for('download_file', filename=file['filename']) }}" target="_blank">Download</a>
             </li>
         {% endfor %}
