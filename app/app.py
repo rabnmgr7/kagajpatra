@@ -30,8 +30,8 @@ def upload_file():
         filename = secure_filename(file.filename)
         
         # Ensure the 'uploads' directory exists
-
-        os.makedirs(os.path.join(app.root_path, app.config['UPLOAD_FOLDER']), exist_ok=True)
+        uploads_dir = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
+        os.makedirs(uploads_dir, exist_ok=True)
 
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         return redirect(url_for('index'))
