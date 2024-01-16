@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 from werkzeug.utils import secure_filename
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'doc', 'docx', 'png', 'jpg', 'jpeg', 'gif'])
 
@@ -31,6 +31,7 @@ def index():
         icon_class = icons.get(file_extension[1:], 'far fa-file')  # Default icon if extension not found
         file_data.append({'name': file_name, 'icon': icon_class, 'filename': file})        
 
+    print(file_data)
     return render_template('index.html', files=file_data)
 
 @app.route('/upload', methods=['POST'])
@@ -58,6 +59,17 @@ def upload_file():
 @app.route('/download/<filename>')
 def download_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
+
+@app.route('/uploads')
+def uploads():
+    files = os.listdir(os.path.join(app.root_path, app.config['UPLOAD_FOLDER']))
+    file_data = []
+    for file in files:
+        file_name, file_extension = os.path.splitext(file)
+        icon_class = icons.get(file_extension[1:], 'far fa-file')  # Default icon if extension not found
+        file_data.append({'name': file_name, 'icon': icon_class, 'filename': file})        
+
+    return render_template('uploads.html', files=file_data)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
