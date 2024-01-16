@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofzTGf5ceFurlXGO4G2FZDI3Sb2P5a5d+3" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Document Vault</title>
 </head>
@@ -22,7 +23,8 @@
     <ul>
         {% for file in files %}
             <li>
-                {{ file }}
+		<i class="{{ file['icon'] }}"></i>
+                {{ file['name'] }}
                 <a href="{{ url_for('download_file', filename=file) }}" target="_blank">Download</a>
             </li>
         {% endfor %}

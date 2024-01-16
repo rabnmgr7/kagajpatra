@@ -11,9 +11,26 @@ app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'doc', 'docx', 'png', 'jpg
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
+icons = {
+    'txt': 'far fa-file-alt',   # Example: Font Awesome icon for text files
+    'pdf': 'far fa-file-pdf',   # Example: Font Awesome icon for PDF files
+    'doc': 'far fa-file-word',  # Example: Font Awesome icon for Word files
+    'docx': 'far fa-file-word', # Example: Font Awesome icon for Word files
+    'png': 'far fa-file-image', # Example: Font Awesome icon for image files
+    'jpg': 'far fa-file-image', # Example: Font Awesome icon for image files
+    'jpeg': 'far fa-file-image',# Example: Font Awesome icon for image files
+    'gif': 'far fa-file-image'  # Example: Font Awesome icon for image files
+}
+
 @app.route('/')
 def index():
     files = os.listdir(os.path.join(app.root_path, app.config['UPLOAD_FOLDER']))
+    
+    for file in files:
+        file_name, file_extension = os.path.splitext(file)
+        icon_class = icons.get(file_extension[1:], 'far fa-file')  # Default icon if extension not found
+        file_data.append({'name': file_name, 'icon': icon_class, 'filename': file})        
+
     return render_template('index.html', files=files)
 
 @app.route('/upload', methods=['POST'])
