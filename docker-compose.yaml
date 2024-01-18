@@ -24,6 +24,6 @@ services:
       - ./app/static:/app/app/static
       - ./app/uploads:/app/app/uploads
     ports:
-      - "8085:80"
+      - "8110:80"
     depends_on:
       - web
