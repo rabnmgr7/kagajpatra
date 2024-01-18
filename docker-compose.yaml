@@ -1,7 +1,9 @@
 version: "3.8"
 services:
   web:
-    build: .
+    build:
+      context: .
+      target: init-build
     ports:
       - "5000:5000"
     depends_on:
@@ -21,8 +23,8 @@ services:
     image: nginx:latest
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./app/static:/app/app/static
-      - ./app/uploads:/app/app/uploads
+      - ./app/static:/kagajpatra/app/static
+      - ./app/uploads:/kagajpatra/app/uploads
     ports:
       - "8110:80"
     depends_on:
