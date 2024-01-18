@@ -1,7 +1,6 @@
 # app/app.py
 
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, flash
-from flask.helpers import get_flashed_messages # Import get_flashed_messages explicitly
 from werkzeug.utils import secure_filename
 import os
 
@@ -26,22 +25,15 @@ icons = {
 
 @app.route('/')
 def index():
-    # Check if a success flash message is present
-    success_message = any(msg[1] == 'success' for msg in get_flashed_messages())
-
     files = os.listdir(os.path.join(app.root_path, app.config['UPLOAD_FOLDER']))
     file_data = []
+    for file in files:
+        file_name, file_extension = os.path.splitext(file)
+        icon_class = icons.get(file_extension[1:], 'far fa-file')  # Default icon if extension not found
+        file_data.append({'name': file_name, 'icon': icon_class, 'filename': file})
 
-    if success_message:
-        for file in files:
-            file_name, file_extension = os.path.splitext(file)
-            icon_class = icons.get(file_extension[1:], 'far fa-file')  # Default icon if extension not found
-            file_data.append({'name': file_name, 'icon': icon_class, 'filename': file})
+    return render_template('index.html', files=file_data, message=flash('success'))
 
-        return render_template('index.html', files=file_data, show_files=success_message)
-
-    # Add a default return statement in case the flash message is not present
-    return render_template('index.html', show_files=False)
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
