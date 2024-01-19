@@ -1,0 +1,6 @@
+FROM nginx:latest as init-build
+RUN mkdir -p /kagajpatra/app/static \
+    && mkdir /kagajpatra/app/uploads
+WORKDIR /
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

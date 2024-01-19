@@ -3,7 +3,7 @@ services:
   web:
     image: kagajpatra_web:latest
     deploy:
-      replicas: 3
+      replicas: 2
       restart_policy:
         condition: on-failure
     ports:
@@ -27,7 +27,7 @@ services:
       - server_overlay
   
   nginx:
-    image: nginx:latest
+    image: kagajpatra_nginx:latest
     deploy:
       replicas: 2
       restart_policy:
