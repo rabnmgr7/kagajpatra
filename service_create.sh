@@ -7,7 +7,7 @@ docker service rm kagajpatra_web kagajpatra_db kagajpatra_nginx || true
 docker network rm -f kagajpatra_server_network
 
 echo "Deploying services as stack:"
-docker stack deploy -c docker-compose.yaml kagajpatra
+docker stack deploy -c docker-stack.yaml kagajpatra
 
 echo "Done! showing running services:"
 docker service ls
