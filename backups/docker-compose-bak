@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   web:
-    image: kagajpatra_web:latest
+    image: web:v1
     deploy:
       replicas: 3
       restart_policy:
@@ -10,28 +10,16 @@ services:
       - "5000:5000"
     depends_on:
       - db
-    networks:
-      - server_overlay
  
   db:
     image: mysql:latest
-    deploy:
-      replicas: 2
-      restart_policy:
-        condition: on-failure
     env_file:
       - .env
     ports:
       - "3306:3306"
-    networks:
-      - server_overlay
   
   nginx:
     image: nginx:latest
-    deploy:
-      replicas: 2
-      restart_policy:
-        condition: on-failure
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./app/static:/kagajpatra/app/static
@@ -40,11 +28,3 @@ services:
       - "8110:80"
     depends_on:
       - web
-    networks:
-      - server_overlay
-
-networks:
-  server_overlay:
-    driver: overlay
-    driver_opts:
-      subnet: 10.0.1.0/24
