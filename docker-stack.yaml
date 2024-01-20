@@ -33,9 +33,15 @@ services:
       restart_policy:
         condition: on-failure
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./app/static:/kagajpatra/app/static
-      - ./app/uploads:/kagajpatra/app/uploads
+      - type: bind
+        source: /opt/kagajpatra/nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+      - type: bind
+        source: /opt/kagajpatra/app/static
+        target: /kagajpatra/app/static
+      - type: bind
+        source: /opt/kagajpatra/app/uploads
+        target: /kagajpatra/app/uploads
     ports:
       - "8110:80"
     depends_on:

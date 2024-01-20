@@ -4,7 +4,7 @@ echo "Username:"
 read username
 echo "host ip:"
 read host
-ssh "$username"@"$hostname"
+ssh "$username"@"$host"
 sudo su
 cd /opt/
 git clone https://github.com/rabnmgr7/kagajpatra.git
