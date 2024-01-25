@@ -1,6 +1,6 @@
 pipeline {
     agent {
-    	label 'ubuntu-slave-worker1'
+    	label 'built-in-node'
     }
     stages {
         stage('BuildImages') {
@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Deploy in QA Instance') {
             agent {
-                label 'ubuntu-slave-worker1'
+                label 'built-in-node'
             }
             steps {
                 sh '''
@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Deploy in Stagging Instance') {
             agent {
-                label 'ubuntu-slave-worker1'
+                label 'built-in-node'
             }
             steps {
                 timeout(time:1, unit:'MINUTES') {
