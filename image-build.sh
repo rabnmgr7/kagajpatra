@@ -1,3 +1,5 @@
+#!/bin/bash
+
 docker image build -t harbor.registry.local/kagajpatra/web:$BUILD_NUMBER -f Dockerfile-web .
 
 docker image build -t harbor.registry.local/kagajpatra/nginx:$BUILD_NUMBER -f Dockerfile-nginx .

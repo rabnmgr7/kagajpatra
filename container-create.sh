@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Stopping previously built container"
 docker container stop kagajpatra_web || true
 docker container stop kagajpatra_nginx || true
