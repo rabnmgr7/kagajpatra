@@ -1,6 +1,6 @@
 pipeline {
     agent {
-    label 'built-in-node'
+    	label 'ubuntu-slave-worker1'
     }
     stages {
         stage('BuildImages') {
