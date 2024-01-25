@@ -1,0 +1,56 @@
+version: "3.8"
+services:
+  web:
+    image: kagajpatra_web:latest
+    deploy:
+      replicas: 4
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    networks:
+      - server_overlay
+ 
+  db:
+    image: mysql:latest
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    networks:
+      - server_overlay
+  
+  nginx:
+    image: kagajpatra_nginx:latest
+    deploy:
+      replicas: 4
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - type: bind
+        source: /opt/kagajpatra/nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+      - type: bind
+        source: /opt/kagajpatra/app/static
+        target: /kagajpatra/app/static
+      - type: bind
+        source: /opt/kagajpatra/app/uploads
+        target: /kagajpatra/app/uploads
+    ports:
+      - "8110:80"
+    depends_on:
+      - web
+    networks:
+      - server_overlay
+
+networks:
+  server_overlay:
+    driver: overlay
+    driver_opts:
+      subnet: 10.0.1.0/24
