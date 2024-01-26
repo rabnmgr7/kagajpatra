@@ -1,34 +1,33 @@
 version: 3.8
 services:
-    web:
-      image: harbor.registry.local/kagajpatra/web:$BUILD_NUMBER
-      ports:
-        - "5000:5000"
-      networks:
-        - server_net
-      volumes:
-        - ./app:/app # Mount the app directory into the container for code changes
-    db:
-      image: harbor.registry.local/kagajpatra/db:$BUILD_NUMBER
-      env_file:
-        - .env
-      ports:
-        - "3306:3306"
-      networks:
-        - server_net
-    nginx:
-      image: harbor.registry.local/kagajpatra/nginx:$BUILD_NUMBER
-      volumes:
-        - ./app:/app
-      ports:
-        - "8081:80"
-      networks:
-        - server_net
+  web:
+    image: harbor.registry.local/kagajpatra/web:$BUILD_NUMBER
+    ports:
+      - "5000:5000"
+    networks:
+      - server_net
+    volumes:
+      - ./app:/app # Mount the app directory into the container for code changes
+  db:
+    image: harbor.registry.local/kagajpatra/db:$BUILD_NUMBER
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    networks:
+      - server_net
+  nginx:
+    image: harbor.registry.local/kagajpatra/nginx:$BUILD_NUMBER
+    volumes:
+      - ./app:/app
+    ports:
+      - "8081:80"
+    networks:
+      - server_net
 
-  networks:
-    server_net:
-      ipam:
-        subnet:
-          - "11.0.0.0/24"
-        
+networks:
+  server_net:
+    ipam:
+      subnet:
+        - "11.0.0.0/24"
         
