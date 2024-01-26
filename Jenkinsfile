@@ -20,6 +20,7 @@ pipeline {
                     input message: 'Approve service deploy: '
                 }
                 sh '''
+                whoami
                 echo "Running services!!!"
                 bash service-create.sh
                 '''
