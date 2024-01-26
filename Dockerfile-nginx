@@ -6,7 +6,7 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
 #Remove the default Nginx Configuration file
 RUN rm /etc/nginx/conf.d/default.conf \
-    && mkdir app || true
+    && mkdir -p ./app/uploads || true
 
 #Expose port 80 to the outside world
 EXPOSE 80
