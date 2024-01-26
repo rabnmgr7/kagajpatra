@@ -1,8 +1,8 @@
 #Dockerfile for python web app
 FROM python:3.9-slim as init-build
 WORKDIR /kagajpatra
-COPY requirements.txt .
+COPY . /kagajpatra
 RUN pip install --upgrade pip \
-    && pip install -r requirements.txt
-COPY . .
-CMD ["python", "app.py"]
+    && pip install --trusted-host pypi.python.org -r requirements.txt
+EXPOSE 5000
+CMD ["python", "app/app.py"]
