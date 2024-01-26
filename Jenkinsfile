@@ -16,7 +16,7 @@ pipeline {
                 label 'ubuntu-slave-worker1'
             }
             steps {
-                timeout(time:1, unit:'MINUTES') {
+                timeout(time:2, unit:'MINUTES') {
                     input message: 'Approve service deploy: '
                 }
                 sh '''
