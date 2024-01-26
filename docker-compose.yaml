@@ -11,15 +11,20 @@ version: 3.8
       env_file:
         - .env
       ports:
-        - "3307:3307"
+        - "3306:3306"
       networks:
         - server_net
     nginx:
       image: harbor.registry.local/kagajpatra/nginx:$BUILD_NUMBER
+      volumes:
+        - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+        - ./app/static:/kagajpatra/app/static
+        - ./app/uploads:/kagajpatra/app/uploads
       ports:
         - "8200:80"
       networks:
         - server_net
+
   networks:
     server_net:
       ipam:
