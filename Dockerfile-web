@@ -4,6 +4,6 @@ WORKDIR /kagajpatra
 COPY . /kagajpatra
 RUN pip install --upgrade pip \
     && pip install --trusted-host pypi.python.org -r requirements.txt \
-    && mkdir /app/uploads || true
+    && mkdir ./app/uploads
 EXPOSE 5000
 CMD ["python", "app/app.py"]
