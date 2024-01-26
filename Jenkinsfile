@@ -17,7 +17,7 @@ pipeline {
             }
             steps {
                 timeout(time:1, unit:'MINUTES') {
-                    input message: 'Approve the stagging deployemnt.'
+                    input message: 'Approve service deploy: '
                 }
                 sh '''
                 echo "Running services!!!"
