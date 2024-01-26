@@ -3,8 +3,8 @@ pipeline {
     	label 'built-in-node'
     }
     environment {
-        HARBOR_REGISTRY_USER = 'credentials('harbor-registry-cred').username'
-        HARBOR_REGISTRY_PASSWORD = 'credentials('harbor-registry-cred').password'
+        HARBOR_REGISTRY_USER = "credentials('harbor-registry-cred').username"
+        HARBOR_REGISTRY_PASSWORD = "credentials('harbor-registry-cred').password"
     }
     stages {
         stage('BuildImages') {
