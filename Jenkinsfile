@@ -18,7 +18,7 @@ pipeline {
             steps {
                 sh '''
                 echo "Creating Containers for QA Instance"
-                bash service-create.sh
+                bash service_create.sh
                 '''
             }
         }
