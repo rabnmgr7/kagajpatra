@@ -11,6 +11,6 @@ docker container rm kagajpatra_nginx || true
 docker container rm kagajpatra_mysql || true
 
 echo "Creating new container"
-docker run -itd --name kagajpatra_web -p 5000:5000 harbor.registry.local/kagajpatra/web:$BUILD_NUMBER
-docker run -itd --name kagajpatra_mysql -p 3306:3306 harbor.registry.local/kagajpatra/web:$BUILD_NUMBER
-docker run -itd --name kagajpatra_nginx -p 8200:80 harbor.registry.local/kagajpatra/web:$BUILD_NUMBER
+docker run -itd --name kagajpatra_web -p 5001:5000 harbor.registry.local/kagajpatra/web:$BUILD_NUMBER
+docker run -itd --name kagajpatra_mysql -p 3307:3306 harbor.registry.local/kagajpatra/web:$BUILD_NUMBER
+docker run -itd --name kagajpatra_nginx -p 8082:80 harbor.registry.local/kagajpatra/web:$BUILD_NUMBER
