@@ -3,6 +3,7 @@ FROM python:3.9-slim as init-build
 WORKDIR /kagajpatra
 COPY . /kagajpatra
 RUN pip install --upgrade pip \
-    && pip install --trusted-host pypi.python.org -r requirements.txt
+    && pip install --trusted-host pypi.python.org -r requirements.txt \
+    && mkdir /app/uploads || true
 EXPOSE 5000
 CMD ["python", "app/app.py"]
