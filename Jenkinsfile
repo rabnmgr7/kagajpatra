@@ -2,6 +2,10 @@ pipeline {
     agent {
     	label 'built-in-node'
     }
+    environment {
+        // Define the credential ID
+        HARBOR_REGISTRY_CRED_ID = 'harbor-registry-cred'
+    }
     stages {
         stage('BuildImages') {
             steps {
@@ -21,7 +25,7 @@ pipeline {
                 }
                 script {
                     // Extract credentials dynamically
-                    def harborRegistryCred = credentials("${HARBOR_REGISTRY_CRED_ID}")
+                    def harborRegistryCred = credentials("${env.HARBOR_REGISTRY_CRED_ID}")
                     withEnv(['HARBOR_REGISTRY_USER=' + harborRegistryCred.username, 'HARBOR_REGISTRY_PASSWORD=' + harborRegistryCred.password]) {
                         sh '''
                         echo "Running services!!!"
