@@ -9,7 +9,7 @@ services:
     volumes:
       - ./app:/app # Mount the app directory into the container for code changes
   db:
-    image: harbor.registry.local/kagajpatra/db:$BUILD_NUMBER
+    image: harbor.registry.local/kagajpatra/mysql:$BUILD_NUMBER
     env_file:
       - .env
     ports:
