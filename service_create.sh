@@ -2,4 +2,4 @@
 #Removing previously ran services
 docker compose down || true
 # Starting new services
-docker compose up
+docker compose up -d
