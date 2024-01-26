@@ -11,14 +11,14 @@ pipeline {
                 '''
             }
         }
-        stage('Deploy in QA Instance') {
+        stage('CreateServices') {
             agent {
                 label 'built-in-node'
             }
             steps {
                 sh '''
                 echo "Running services!!!"
-                bash service_create.sh
+                bash service-create.sh
                 '''
             }
         }
