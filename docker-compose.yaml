@@ -27,7 +27,9 @@ services:
 
 networks:
   server_net:
+    driver: bridge
     ipam:
-      subnet:
-        - "11.0.0.0/24"
+      driver: default
+      config:
+        - subnet: "11.0.0.0/24"
         
