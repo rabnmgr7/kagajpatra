@@ -16,6 +16,9 @@ pipeline {
                 label 'ubuntu-slave-worker1'
             }
             steps {
+                timeout(time:1, unit:'MINUTES') {
+                    input message: 'Approve the stagging deployemnt.'
+                }
                 sh '''
                 echo "Running services!!!"
                 bash service-create.sh
