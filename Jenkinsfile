@@ -11,9 +11,9 @@ pipeline {
                 '''
             }
         }
-        stage('CreateServices') {
+        stage('DeployServices') {
             agent {
-                label 'built-in-node'
+                label 'ubuntu-slave-worker1'
             }
             steps {
                 sh '''
