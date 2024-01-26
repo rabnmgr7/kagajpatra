@@ -7,7 +7,7 @@ services:
     networks:
       - server_net
     volumes:
-      - ./app:/app # Mount the app directory into the container for code changes
+      - ./app:/kagajpatra/app # Mount the app directory into the container for code changes
   db:
     image: harbor.registry.local/kagajpatra/mysql:$BUILD_NUMBER
     env_file:
