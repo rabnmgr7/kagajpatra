@@ -19,7 +19,7 @@ services:
   nginx:
     image: harbor.registry.local/kagajpatra/nginx:$BUILD_NUMBER
     volumes:
-      - ./app:/kagajpatra/app
+      - ./app/static:/kagajpatra/app/static
     ports:
       - "8081:80"
     networks:
