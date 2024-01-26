@@ -21,7 +21,7 @@ pipeline {
                 }
                 script {
                     // Extract credentials dynamically
-                    def harborRegistryCred = credentials('harbor-registry-cred')
+                    def harborRegistryCred = credentials("${HARBOR_REGISTRY_CRED_ID}")
                     withEnv(['HARBOR_REGISTRY_USER=' + harborRegistryCred.username, 'HARBOR_REGISTRY_PASSWORD=' + harborRegistryCred.password]) {
                         sh '''
                         echo "Running services!!!"
