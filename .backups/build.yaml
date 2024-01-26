@@ -1,7 +1,0 @@
-version: "3.8"
-services:
-  web:
-    build:
-      context: .
-      target: init-build
-  image: web:v1

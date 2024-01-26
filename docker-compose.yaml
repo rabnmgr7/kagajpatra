@@ -11,7 +11,7 @@ services:
   db:
     image: harbor.registry.local/kagajpatra/mysql:$BUILD_NUMBER
     env_file:
-      - .env
+      - ./.secrets/.env
     ports:
       - "3306:3306"
     networks:
