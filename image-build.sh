@@ -11,5 +11,5 @@ docker images
 
 echo "Pushing Docker images to Harbor repository!!"
 docker image push harbor.registry.local/kagajpatra/web:$BUILD_NUMBER || true
-
 docker image push harbor.registry.local/kagajpatra/nginx:$BUILD_NUMBER || true
+docker image push harbor.registry.local/kagajpatra/mysql:$BUILD_NUMBER || true
