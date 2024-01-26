@@ -23,7 +23,6 @@ pipeline {
                 echo "Running services!!!"
                 bash service-create.sh
                 '''
-                }
             }
         }
     }
