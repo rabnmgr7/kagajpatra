@@ -21,7 +21,7 @@ services:
       volumes:
         - ./app:/app
       ports:
-        - "8100:80"
+        - "8081:80"
       networks:
         - server_net
 
