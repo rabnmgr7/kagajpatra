@@ -1,4 +1,4 @@
-FROM nginx:latest as init-build
+FROM nginx:latest
 
 WORKDIR /kagajpatra
 #Copy the Nginx configuration file into the container
