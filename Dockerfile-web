@@ -1,5 +1,5 @@
 #Dockerfile for python web app
-FROM python:3.9-slim as init-build
+FROM python:3.9-slim
 WORKDIR /kagajpatra
 COPY . /kagajpatra
 RUN pip install --upgrade pip \
