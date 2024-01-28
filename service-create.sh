@@ -7,3 +7,4 @@ echo "Deploying services"
 # Starting new services
 docker compose up -d
 docker compose ps
+docker container ps -a | grep -i "kagajpatra"
