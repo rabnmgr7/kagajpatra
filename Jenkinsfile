@@ -2,6 +2,9 @@ pipeline {
     agent {
     	label 'built-in-node'
     }
+    triggers {
+        githubPush()
+    }
     stages {
         stage('BuildImages') {
             steps {
