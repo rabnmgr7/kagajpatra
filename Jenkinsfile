@@ -27,28 +27,28 @@ pipeline {
                 '''
             }
         }
-	stage('Registry Push') {
-	  agent {
-	    label 'ubuntu-slave-worker1'
-	  }
-	  steps {
-	    sh '''
-	    echo "Pushing images:v1 to harbor registry.."
-	    bash ./bin/registry-push.sh
-	    '''
-	  }
-	}
-	stage('Deploy Webapp') {
-	  agent {
-	    label 'ubuntu-slave-manager1'
-	  }
-	  steps {
-	    sh '''
-	    echo "Deploying images:v1 to manager01 node.."
-	    bash ./bin/deploy.sh
-	  }
-	}
-        }
+	      stage('RegistryPush') {
+	          agent {
+	              label 'ubuntu-slave-worker1'
+	          }
+	          steps {
+	              sh '''
+	              echo "Pushing images:v1 to harbor registry.."
+	              bash ./bin/registry-push.sh
+	              '''
+	          }
+	      }
+	      stage('DeployKagajpatra') {
+	          agent {
+	              label 'ubuntu-slave-manager1'
+	          }
+	          steps {
+	              sh '''
+	              echo "Deploying images:v1 to manager01 node.."
+	              bash ./bin/deploy.sh
+                '''
+	          }
+	      }
     }
     post {
         always {
