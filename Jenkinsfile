@@ -26,5 +26,12 @@ pipeline {
                 '''
             }
         }
+        post {
+            always {
+                mail to: 'rabnmgr7@outlook.com'
+                subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) Completed running",
+                body: "Please go to ${BUILD_URL} and verify the build"
+            } 
+        }
     }
 }
