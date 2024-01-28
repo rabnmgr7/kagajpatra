@@ -7,25 +7,47 @@ pipeline {
             steps {
                 sh '''
                 echo "Building Docker Images"
-                bash image-build.sh
+                bash ./bin/image-build.sh
                 '''
             }
         }
-        stage('DeployServices') {
+        stage('TestRun') {
             agent {
                 label 'ubuntu-slave-worker1'
             }
             steps {
                 timeout(time:2, unit:'MINUTES') {
-                    input message: 'Approve service deploy: '
+                    input message: 'Approve for TestRun: '
                 }
                 sh '''
                 echo "Determining user"
                 whoami
                 echo "Running services!!!"
-                bash service-create.sh
+                bash ./bin/service-create.sh
                 '''
             }
+        }
+	stage('Registry Push') {
+	  agent {
+	    label 'ubuntu-slave-worker1'
+	  }
+	  steps {
+	    sh '''
+	    echo "Pushing images:v1 to harbor registry.."
+	    bash ./bin/registry-push.sh
+	    '''
+	  }
+	}
+	stage('Deploy Webapp') {
+	  agent {
+	    label 'ubuntu-slave-manager1'
+	  }
+	  steps {
+	    sh '''
+	    echo "Deploying images:v1 to manager01 node.."
+	    bash ./bin/deploy.sh
+	  }
+	}
         }
     }
     post {
