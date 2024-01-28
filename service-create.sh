@@ -6,3 +6,4 @@ cat ./.secrets/.password | docker login -u "admin" --password-stdin harbor.regis
 echo "Deploying services"
 # Starting new services
 docker compose up -d
+docker compose ps
