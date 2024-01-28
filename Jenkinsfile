@@ -1,6 +1,6 @@
 pipeline {
     agent {
-    	label 'built-in-node'
+    	label 'ubuntu-slave-worker1'
     }
     stages {
         stage('BuildImages') {
@@ -31,11 +31,14 @@ pipeline {
 	          agent {
 	              label 'ubuntu-slave-worker1'
 	          }
-	          steps {
-	              sh '''
-	              echo "Pushing images:v1 to harbor registry.."
-	              bash ./bin/registry-push.sh
-	              '''
+		steps {
+                    timeout(time:5, unit:'MINUTES') {
+                        input message: 'Approve for TestRun: '
+                    }
+	            sh '''
+	                echo "Pushing images:v1 to harbor registry.."
+	                bash ./bin/registry-push.sh
+	            '''
 	          }
 	      }
 	      stage('DeployKagajpatra') {
@@ -43,10 +46,13 @@ pipeline {
 	              label 'ubuntu-slave-manager1'
 	          }
 	          steps {
+		      timeout(time:5, unit:'MINUTES') {
+                          input message: 'Approve for TestRun: '
+		      }
 	              sh '''
 	              echo "Deploying images:v1 to manager01 node.."
 	              bash ./bin/deploy.sh
-                '''
+                      '''
 	          }
 	      }
     }
