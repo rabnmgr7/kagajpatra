@@ -9,7 +9,7 @@ docker image build -t $REGISTRY/kagajpatra/nginx:$BUILD_NUMBER -f Dockerfile-ngi
 docker image tag mysql:latest $REGISTRY/kagajpatra/mysql:$BUILD_NUMBER
 
 echo "Showing images!!"
-docker images
+docker images | grep -i "kagajpatra"
 
 echo "Logging in to Harbor Registry"
 echo "Rabin@123" | docker login -u "admin" --password-stdin $REGISTRY > /dev/null
