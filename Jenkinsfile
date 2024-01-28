@@ -20,6 +20,7 @@ pipeline {
                     input message: 'Approve service deploy: '
                 }
                 sh '''
+                echo "Determining user"
                 whoami
                 echo "Running services!!!"
                 bash service-create.sh
