@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Which user is running these commands!"
+whoami
 #Removing previously ran services
 docker compose down || true
 echo "Logging in to harbor"
