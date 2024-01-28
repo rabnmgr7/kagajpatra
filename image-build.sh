@@ -1,5 +1,6 @@
 #!/bin/bash
 REGISTRY='harbor.registry.local'
+echo "Registry URL: $REGISTRY"
 echo "Building Docker images!!"
 docker image build -t $REGISTRY/kagajpatra/web:$BUILD_NUMBER -f Dockerfile-web .
 
