@@ -60,7 +60,7 @@ pipeline {
         always {
             mail to: 'rabnmgr7@outlook.com, rabinonlineservice@gmail.com, rabnmgr7@gmail.com, pungita777@gmail.com',
                 subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) Completed running",
-                body: "Please go to ${BUILD_URL} and verify the build"
+                body: "Please go to ${BUILD_URL} and verify the build."
         }
 	success {
             mail to: 'rabnmgr7@outlook.com, rabinonlineservice@gmail.com, rabnmgr7@gmail.com, pungita777@gmail.com',
