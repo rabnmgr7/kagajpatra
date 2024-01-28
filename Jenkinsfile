@@ -33,10 +33,10 @@ pipeline {
 	          }
 		steps {
                     timeout(time:5, unit:'MINUTES') {
-                        input message: 'Approve for TestRun: '
+                        input message: 'Approve to push image to Harbor Registry: '
                     }
 	            sh '''
-	                echo "Pushing images:v1 to harbor registry.."
+	                echo "Pushing images:latest to harbor registry.."
 	                bash ./bin/registry-push.sh
 	            '''
 	          }
@@ -47,10 +47,10 @@ pipeline {
 	          }
 	          steps {
 		      timeout(time:5, unit:'MINUTES') {
-                          input message: 'Approve for TestRun: '
+                          input message: 'Approve to Deploy app to ubuntu-slave-manager1 node: '
 		      }
 	              sh '''
-	              echo "Deploying images:v1 to manager01 node.."
+	              echo "Deploying images:latest to ubuntu-slave-manager1 node.."
 	              bash ./bin/deploy.sh
                       '''
 	          }
