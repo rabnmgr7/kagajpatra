@@ -1,5 +1,7 @@
 #!/bin/bash
-sed -i 's/$BUILD_NUMBER/latest/g' docker-compose.yml
+sed -i 's/web/web_v1/g' docker-compose.yml
+sed -i 's/nginx/nginx_v1/g' docker-compose.yml
+sed -i 's/mysql/mysql_v1/g' docker-compose.yml
 echo "Which user is running these commands!"
 whoami
 #Removing previously ran services
